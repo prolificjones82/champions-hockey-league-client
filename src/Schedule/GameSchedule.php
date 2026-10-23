@@ -15,7 +15,7 @@ final class GameSchedule extends Client
      *
      * @param League     $league
      * @param int|string $year
-     * @param ?string $team
+     * @param ?string    $team
      *
      * @return ScheduleResponse
      * @throws Exception

@@ -40,7 +40,7 @@ use ChampionsLeagueClient\Standings\Standings;
 $league = League::CHL;
 $season = 2025;
 
-$schedule = (new GameSchedule())->getLeagueSchedule($league, $season);
+$schedule = (new GameSchedule())->getTeamSchedule($league, $season, '96');
 foreach ($schedule->matches as $match) {
     printf(
         "%s: %s vs %s (%s)\n",
@@ -74,14 +74,12 @@ use ChampionsLeagueClient\Schedule\GameSchedule;
 
 $client = new GameSchedule();
 
-$leagueSchedule = $client->getLeagueSchedule(League::CHL, 2025);
-$teamSchedule = $client->getTeamSchedule(League::CHL, 96, 2025);
+$teamSchedule = $client->getTeamSchedule(League::CHL, 2025, '96');
 ```
 
 | Method | Description | Response |
 | --- | --- | --- |
-| `getLeagueSchedule(League $league, int|string $year)` | All listed games for a league and season | `ScheduleResponse` |
-| `getTeamSchedule(League $league, int|string $team, int|string $year)` | Games for a team in a league and season | `ScheduleResponse` |
+| `getTeamSchedule(League $league, int|string $year, ?string $team)` | Games for a team in a league and season | `ScheduleResponse` |
 
 `ScheduleResponse::$matches` contains `ScheduleGameResponse` objects. A match includes its ID, start date (`DateTime`), league and season, home and guest teams, status, results, venue, and game-clock metadata.
 
@@ -175,9 +173,9 @@ HTTP request failures are logged and rethrown as exceptions. Connection failures
 
 ```php
 try {
-    $schedule = (new GameSchedule())->getLeagueSchedule(League::CHL, 2025);
+    $schedule = (new GameSchedule())->getTeamSchedule(League::CHL, 2025, '96');
 } catch (\Throwable $exception) {
-    error_log(sprintf('Unable to load the league schedule: %s', $exception->getMessage()));
+    error_log(sprintf('Unable to load the team schedule: %s', $exception->getMessage()));
     throw $exception;
 }
 ```
