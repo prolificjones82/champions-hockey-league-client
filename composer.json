@@ -1,0 +1,46 @@
+{
+    "name": "prolificjones/champions-hockey-league-client",
+    "description": "Champions Hockey League API SDK in PHP",
+    "type": "library",
+    "minimum-stability": "stable",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+		"psr-4": {
+			"ChampionsLeagueClient\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"ChampionsLeagueClient\\Tests\\": "tests/"
+		}
+	},
+    "authors": [
+        {
+            "name": "Lee Jones",
+            "email": "mail@leejones.me.uk"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^8.3",
+        "symfony/http-foundation": "^8.1",
+        "monolog/monolog": "^3.12",
+        "psr/clock": "^1.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "phpstan/phpstan": "^2.3",
+        "phpunit/phpunit": "^13.4",
+        "php": "^8.4",
+        "symfony/dotenv": "^8.1"
+    },
+    "scripts": {
+		"typecheck": "./vendor/bin/phpstan analyse -c phpstan.neon --error-format=table || true",
+		"test": "phpunit",
+		"test-coverage": [
+			"@putenv XDEBUG_MODE=coverage",
+			"phpunit --coverage-text"
+		],
+		"format": "php-cs-fixer fix",
+		"format:check": "php-cs-fixer check --diff"
+	}
+}

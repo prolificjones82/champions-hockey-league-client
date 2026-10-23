@@ -1,0 +1,18 @@
+composer.phar
+/vendor/
+.env
+
+# Testing / coverage
+.phpunit.result.cache
+.phpunit.cache/
+coverage/
+.phpunit/
+
+# PHP CS Fixer
+.php-cs-fixer.cache
+
+# PHPStan
+.phpstan.cache/
+
+*.log
+**/*.log
