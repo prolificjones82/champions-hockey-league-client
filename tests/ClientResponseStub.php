@@ -45,7 +45,7 @@ final class ClientResponseStub
             throw new RuntimeException('Unable to determine the current directory.');
         }
 
-        $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'elite-league-client-' . bin2hex(random_bytes(4));
+        $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'champions-hockey-league-client-' . bin2hex(random_bytes(4));
         if (!mkdir($directory)) {
             throw new RuntimeException(sprintf('Unable to create temporary directory "%s".', $directory));
         }

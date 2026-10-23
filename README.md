@@ -14,7 +14,7 @@ The SDK sends requests to the API's public JSON endpoint and maps responses to t
 Install the package with Composer:
 
 ```bash
-composer require prolificjones/elite-league-client
+composer require prolificjones/champions-hockey-league-client
 ```
 
 Composer's autoloader uses the `ChampionsLeagueClient\\` namespace for classes in this package. Include it in a standalone script when it is not already loaded by your application:

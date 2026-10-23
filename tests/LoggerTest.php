@@ -69,7 +69,7 @@ final class LoggerTest extends TestCase
     private function assertDefaultHandlerLevel(mixed $value, Level $expectedLevel): void
     {
         $this->withVerboseEnv($value, function () use ($expectedLevel): void {
-            $logger = new Logger('elite_league_logger_test');
+            $logger = new Logger('champions_hockey_league_logger_test');
             $handlers = $logger->logger->getHandlers();
 
             self::assertCount(2, $handlers);
@@ -141,7 +141,7 @@ final class LoggerTest extends TestCase
             $this->expectException(InvalidArgumentException::class);
             $this->expectExceptionMessage('CHAMPIONS_HOCKEY_LEAGUE_VERBOSE_LOGGING must be a boolean value.');
 
-            new Logger('elite_league_logger_test');
+            new Logger('champions_hockey_league_logger_test');
         });
     }
 
@@ -151,14 +151,14 @@ final class LoggerTest extends TestCase
             $this->expectException(InvalidArgumentException::class);
             $this->expectExceptionMessage('CHAMPIONS_HOCKEY_LEAGUE_VERBOSE_LOGGING must be a boolean value.');
 
-            new Logger('elite_league_logger_test');
+            new Logger('champions_hockey_league_logger_test');
         });
     }
 
     public function testDefaultHandlersAreStreamAndFirePhp(): void
     {
         $this->withVerboseEnv(null, function (): void {
-            $handlers = (new Logger('elite_league_logger_test'))->logger->getHandlers();
+            $handlers = (new Logger('champions_hockey_league_logger_test'))->logger->getHandlers();
 
             self::assertInstanceOf(StreamHandler::class, $handlers[0]);
             self::assertInstanceOf(FirePHPHandler::class, $handlers[1]);
@@ -239,7 +239,7 @@ final class LoggerTest extends TestCase
     {
         // The logger writes to ./<name>.log, so run inside a throwaway directory.
         $this->originalCwd = getcwd();
-        $this->tempDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'elite-league-logger-' . bin2hex(random_bytes(4));
+        $this->tempDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'champions-hockey-league-logger-' . bin2hex(random_bytes(4));
         mkdir($this->tempDir);
         chdir($this->tempDir);
     }
