@@ -40,7 +40,7 @@ use ChampionsLeagueClient\Standings\Standings;
 $league = League::CHL;
 $season = 2025;
 
-$schedule = (new GameSchedule())->getTeamSchedule($league, $season, '96');
+$schedule = (new GameSchedule())->getTeamSchedule($league, $season);
 foreach ($schedule->matches as $match) {
     printf(
         "%s: %s vs %s (%s)\n",
@@ -74,7 +74,7 @@ use ChampionsLeagueClient\Schedule\GameSchedule;
 
 $client = new GameSchedule();
 
-$teamSchedule = $client->getTeamSchedule(League::CHL, 2025, '96');
+$teamSchedule = $client->getTeamSchedule(League::CHL, 2025);
 ```
 
 | Method | Description | Response |
@@ -173,7 +173,7 @@ HTTP request failures are logged and rethrown as exceptions. Connection failures
 
 ```php
 try {
-    $schedule = (new GameSchedule())->getTeamSchedule(League::CHL, 2025, '96');
+    $schedule = (new GameSchedule())->getTeamSchedule(League::CHL, 2025);
 } catch (\Throwable $exception) {
     error_log(sprintf('Unable to load the team schedule: %s', $exception->getMessage()));
     throw $exception;

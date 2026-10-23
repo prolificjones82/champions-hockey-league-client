@@ -10,9 +10,9 @@ use ChampionsLeagueClient\Standings\Response\StandingsResponse;
 
 final class Standings extends Client
 {
-    public function getStandings(League $league, int|string $year)
+    public function getStandings(int|string $year)
     {
-        $path = sprintf('/table/%s/%s.json', (string) $year, $league->value);
+        $path = sprintf('/table/%s/%s.json', (string) $year, League::CHL->value);
 
         try {
             $req = $this->makeRequest('GET', $path);

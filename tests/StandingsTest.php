@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use ChampionsLeagueClient\Standings\Standings;
-use ChampionsLeagueClient\Schedule\Enums\League;
 use ChampionsLeagueClient\Standings\Response\StandingsResponse;
 
 final class StandingsTest extends TestCase
@@ -15,12 +14,10 @@ final class StandingsTest extends TestCase
     {
         $client = new Standings();
 
-        foreach (League::cases() as $league) {
-            ClientResponseStub::set($client, ['clubs' => []]);
-            $response = $client->getStandings($league, 2025);
-            $this->assertInstanceOf(StandingsResponse::class, $response);
-            $this->assertSame([], $response->clubs);
-        }
+        ClientResponseStub::set($client, ['clubs' => []]);
+        $response = $client->getStandings(2025);
+        $this->assertInstanceOf(StandingsResponse::class, $response);
+        $this->assertSame([], $response->clubs);
     }
 
     public function testHttpFailureIsWrapped(): void
@@ -30,7 +27,7 @@ final class StandingsTest extends TestCase
             ClientResponseStub::set($client, [], 404);
 
             try {
-                $client->getStandings(League::CHL, 2025);
+                $client->getStandings(2025);
                 self::fail('Expected the HTTP failure to be rethrown.');
             } catch (Exception $exception) {
                 self::assertNotInstanceOf(RequestException::class, $exception);
@@ -46,7 +43,7 @@ final class StandingsTest extends TestCase
             ClientResponseStub::failWithConnectionError($client);
 
             $this->expectException(ConnectException::class);
-            $client->getStandings(League::CHL, 2025);
+            $client->getStandings(2025);
         });
     }
 }

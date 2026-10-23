@@ -467,6 +467,18 @@ final class ResponseMappingTest extends TestCase
         self::assertSame(GameStatus::BEFORE_MATCH, $response->status);
         self::assertNull($response->group);
         self::assertNull($response->overtimeCount);
+        self::assertSame(GameStatus::BEFORE_MATCH->value, $response->toArray()['status']);
+    }
+
+    public function testScheduleMapsApiStatusAliases(): void
+    {
+        $data = self::scheduleGame();
+        $data['status'] = 'INTERRUPTED';
+
+        $response = ScheduleGameResponse::fromArray($data);
+
+        self::assertSame(GameStatus::INTERUPTED, $response->status);
+        self::assertSame(GameStatus::INTERUPTED->value, $response->toArray()['status']);
     }
 
     public function testEventTypeAliasesAndUnknownValues(): void
