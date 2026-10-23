@@ -128,9 +128,7 @@ Pass a `League` enum case to schedule and standings methods:
 
 | Case | API value |
 | --- | ---: |
-| `League::CHL` | `3` |
-| `League::CHALLENGE_CUP` | `4` |
-| `League::PLAYOFFS` | `5` |
+| `League::CHL` | `1` |
 
 Schedule matches expose their status as a `GameStatus` enum in `$match->status`. Its values are `Fixture`, `Live`, `Result`, `Postponed`, `Interupted`, and `Cancelled`. API spellings such as `INTERRUPTED` and `CANCELED` are normalized when mapping responses.
 
